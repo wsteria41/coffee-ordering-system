@@ -1,0 +1,10 @@
+Requirement ID,Test Case ID,Test Name,Status
+REQ-001,TC-001,Signup with valid data,PENDING
+REQ-002,TC-002,Login and receive JWT,PENDING
+REQ-003,TC-003,Fetch menu list,PENDING
+REQ-004,TC-004,Add item to cart,PENDING
+REQ-005,TC-005,Create order,PENDING
+REQ-006,TC-006,Get order status,PENDING
+REQ-007,TC-007,Admin CRUD menu,PENDING
+REQ-008,TC-008,Admin update order status,PENDING
+REQ-009,TC-009,User logout,PENDING
