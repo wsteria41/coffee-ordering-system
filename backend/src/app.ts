@@ -1,16 +1,27 @@
 import express from "express";
-import dotenv from "dotenv";
-dotenv.config();
+import pool from "./database/pool";
+import coffeeRoutes from "./routes/coffee.routes";
+
+app.use("/api/coffee", coffeeRoutes);
 
 const app = express();
+
 app.use(express.json());
 
-app.get("/health", (req, res) => res.json({ status: "ok" }));
-
-// sample route
-app.get("/menu", (req, res) => {
-  res.json([{ id: 1, name: "Americano", price: 2.5 }]);
+app.get("/health", (req, res) => {
+  res.json({ status: "ok" });
 });
 
-const port = process.env.PORT || 4000;
+app.get("/db-check", async (req, res) => {
+  try {
+    const result = await pool.query("SELECT NOW()");
+    res.json({
+      connected: true,
+      time: result.rows[0],
+    });
+  } catch (err) {
+    res.status(500).json({ connected: false, error: err });
+  }
+});
+
 export default app;

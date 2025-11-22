@@ -1,7 +1,6 @@
-import app from "./app";
+import app from "./app.js";
+import { env } from "./config/env";
 
-const PORT = 4000;
-
-app.listen(PORT, () => {
-  console.log(`Backend listening on ${PORT}`);
+app.listen(env.port, () => {
+  console.log("Server running on port", env.port);
 });
