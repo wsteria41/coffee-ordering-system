@@ -13,7 +13,6 @@ app.use("/api/coffee", coffeeRoutes);
 app.use("/api/extras", extraRoutes);
 app.use("/api/orders", orderRoutes);
 
-// last
 app.use(errorHandler);
 
 export default app;

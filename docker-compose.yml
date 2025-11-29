@@ -20,6 +20,7 @@ services:
     build: ./backend
     ports:
       - "4000:4000"
+      - "5555:5555"
     environment:
       DATABASE_URL: postgres://postgres:postgres@db:5432/coffee
       PORT: 4000

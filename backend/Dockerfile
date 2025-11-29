@@ -2,20 +2,24 @@ FROM node:18-alpine
 
 WORKDIR /app
 
-# Only copy package files first
-COPY package*.json ./
+# Copy package configs
+COPY package.json package-lock.json* ./
 
-RUN npm install
+# Install ALL deps (devDeps 포함)
+RUN npm ci --include=dev
 
-# Copy source code
+# Copy project files
 COPY . .
 
+# Install Prisma CLI globally (fix for alpine)
+RUN npm install -g prisma
+
+# Generate Prisma Client
 RUN npx prisma generate
 
 # Build TypeScript
 RUN npm run build
 
-# Start server
-CMD ["node", "dist/server.js"]
+EXPOSE 4000
 
-EXPOSE 3000
+CMD ["node", "dist/server.js"]
