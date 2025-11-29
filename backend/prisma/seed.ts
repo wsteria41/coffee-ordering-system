@@ -1,9 +1,6 @@
-import { PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
+import prisma from "../src/database/prisma.js";
 
 async function main() {
-  // Coffee seed
   await prisma.coffee.createMany({
     data: [
       { name: "Espresso", description: "Strong shot", basePrice: 300 },
@@ -12,7 +9,6 @@ async function main() {
     ],
   });
 
-  // Extra seed
   await prisma.extra.createMany({
     data: [
       { name: "Extra Shot", price: 100 },
@@ -25,11 +21,9 @@ async function main() {
 main()
   .then(() => {
     console.log("Database seeded!");
+    process.exit(0);
   })
   .catch((e) => {
     console.error(e);
     process.exit(1);
-  })
-  .finally(async () => {
-    await prisma.$disconnect();
   });
