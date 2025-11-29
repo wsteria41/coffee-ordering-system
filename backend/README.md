@@ -139,3 +139,32 @@ Jest unit тестүүд.
 📄 Лиценз
 
 MIT License – хүссэнээрээ ашиглах боломжтой.
+
+
+route map (түлхүүр endpoints)
+
+GET /api/coffee — list coffees
+
+GET /api/coffee/:id — get coffee
+
+POST /api/coffee — create coffee
+
+PUT /api/coffee/:id — update coffee
+
+DELETE /api/coffee/:id — delete coffee
+
+GET /api/extras — list extras
+
+GET /api/extras/:id — get extra
+
+POST /api/extras — create extra
+
+PUT /api/extras/:id — update extra
+
+DELETE /api/extras/:id — delete extra
+
+GET /api/orders — list orders (summary)
+
+GET /api/orders/:id — get order with items
+
+POST /api/orders — create order (transactional: order + items)
