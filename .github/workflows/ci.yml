@@ -5,6 +5,25 @@ on: [push, pull_request]
 jobs:
   backend-tests:
     runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_DB: coffee
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    env:
+      DATABASE_URL: postgresql://postgres:postgres@localhost:5432/coffee
+
     steps:
       - uses: actions/checkout@v4
 
@@ -13,14 +32,29 @@ jobs:
         with:
           node-version: 18
 
-      - name: Backend install & test
+      - name: Install backend deps
         run: |
           cd backend
           npm ci
+
+      - name: Generate Prisma Client
+        run: |
+          cd backend
+          npx prisma generate
+
+      - name: Run migrations
+        run: |
+          cd backend
+          npx prisma migrate deploy
+
+      - name: Run backend tests
+        run: |
+          cd backend
           npm test
 
   frontend-tests:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
 
@@ -29,9 +63,17 @@ jobs:
         with:
           node-version: 18
 
-      - name: Frontend install & test
+      - name: Install frontend deps
         run: |
           cd frontend
           npm ci
+
+      - name: Run frontend tests
+        run: |
+          cd frontend
           npm test
-            npm run lint
+
+      - name: Run frontend lint
+        run: |
+          cd frontend
+          npm run lint

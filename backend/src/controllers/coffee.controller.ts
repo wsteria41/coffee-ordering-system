@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import * as coffeeService from "../services/coffee.service";
+import * as coffeeService from "../services/coffee.service.js";
 
 export const getCoffees = async (req: Request, res: Response) => {
   const coffees = await coffeeService.getAllCoffees();

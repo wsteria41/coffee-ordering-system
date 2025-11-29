@@ -1,5 +1,6 @@
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "windows", "linux-musl-openssl-3.0.x"]
 }
 
 datasource db {
@@ -10,7 +11,35 @@ datasource db {
 model Coffee {
   id          Int      @id @default(autoincrement())
   name        String
-  price       Int
   description String?
+  basePrice   Int
   createdAt   DateTime @default(now())
+  items       OrderItem[]
+}
+
+model Extra {
+  id    Int    @id @default(autoincrement())
+  name  String
+  price Int
+}
+
+model Order {
+  id         Int         @id @default(autoincrement())
+  userId     Int?
+  totalPrice Int
+  status     String      @default("pending")
+  createdAt  DateTime    @default(now())
+  items      OrderItem[]
+}
+
+model OrderItem {
+  id        Int     @id @default(autoincrement())
+  order     Order   @relation(fields: [orderId], references: [id])
+  orderId   Int
+  coffee    Coffee  @relation(fields: [coffeeId], references: [id])
+  coffeeId  Int
+  size      String
+  quantity  Int
+  extras    String?
+  price     Int
 }

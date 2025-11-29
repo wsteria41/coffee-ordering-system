@@ -1,27 +1,16 @@
 import express from "express";
-import pool from "./database/pool";
-import coffeeRoutes from "./routes/coffee.routes";
-
-app.use("/api/coffee", coffeeRoutes);
+import cors from "cors";
+import coffeeRoutes from "./routes/coffee.routes.js";
+import { errorHandler } from "./utils/errorHandler.js";
 
 const app = express();
 
+app.use(cors());
 app.use(express.json());
 
-app.get("/health", (req, res) => {
-  res.json({ status: "ok" });
-});
+app.use("/api/coffee", coffeeRoutes);
 
-app.get("/db-check", async (req, res) => {
-  try {
-    const result = await pool.query("SELECT NOW()");
-    res.json({
-      connected: true,
-      time: result.rows[0],
-    });
-  } catch (err) {
-    res.status(500).json({ connected: false, error: err });
-  }
-});
+// Error handler always last
+app.use(errorHandler);
 
 export default app;

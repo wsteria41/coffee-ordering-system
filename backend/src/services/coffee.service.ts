@@ -1,5 +1,5 @@
-import prisma from "../database/prisma";
-import { CoffeeInput } from "../types/coffee.types";
+import prisma from "../database/prisma.js";
+import { CoffeeInput } from "../types/coffee.types.js";
 
 export const getAllCoffees = async () => {
   return prisma.coffee.findMany();
