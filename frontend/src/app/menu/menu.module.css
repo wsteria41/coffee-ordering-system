@@ -1,0 +1,19 @@
+.addCartBtn {
+  width: 100%;
+  padding: 12px;
+  background: white;          
+  color: black;
+  border: 2px solid #c08151;    
+  border-radius: 8px;
+  margin-top: 10px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: 0.25s ease-in-out;
+}
+
+.addCartBtn:hover {
+  background: #A47C5E;          
+  color: white;
+  transform: scale(1.05);
+}

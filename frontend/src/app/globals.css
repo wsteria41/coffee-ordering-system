@@ -1,4 +1,20 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* DO NOT USE @apply FOR COLORS OR BACKGROUND */
+
+/* Global basic resets */
+body {
+  color: #2c2c2c;
+  background-color: white;
+  -webkit-font-smoothing: antialiased;
+}
+
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+

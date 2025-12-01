@@ -1,0 +1,58 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 40px;
+  background: white;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.logo img {
+  display: block;
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+  gap: 28px; 
+}
+
+.menu a {
+  text-decoration: none;
+  font-size: 15px;
+  color: #222;
+  font-weight: 600;
+  transition: color 0.25s ease;
+}
+
+.menu a:hover {
+  color: brown;
+}
+
+.orderBtn {
+  padding: 8px 18px;
+  border: 2px solid brown;
+  background: transparent;
+  color: brown;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.orderBtn:hover {
+  background: brown;
+  color: white;
+}
+
+.cart {
+  cursor: pointer;
+  color: #333;
+  transition: color 0.25s ease;
+}
+
+.cart:hover {
+  color: #ff3e9d;
+}
